@@ -1,0 +1,121 @@
+.section {
+  background: var(--bg-darker);
+  padding: 110px 60px;
+}
+
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.tag {
+  display: inline-block;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+  color: var(--secondary); letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: rgba(214,230,242,0.08);
+  border: 1px solid rgba(214,230,242,0.15);
+  border-radius: 4px; padding: 5px 12px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: clamp(26px, 2.8vw, 40px);
+  font-weight: 800; letter-spacing: -0.02em;
+  color: var(--white); margin-bottom: 12px;
+}
+
+.sub {
+  font-size: 15px; color: rgba(214,230,242,0.55);
+  font-weight: 300; max-width: 520px;
+  line-height: 1.75; margin-bottom: 48px;
+}
+
+/* ── FLOW ROW ── */
+.flowRow {
+  display: flex; align-items: center; gap: 0;
+  margin-bottom: 32px;
+}
+
+.flowStep {
+  display: flex; align-items: center; gap: 0;
+  flex: 1;
+}
+
+.flowLabel {
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--accent-blue); letter-spacing: 0.1em;
+  text-transform: uppercase; font-weight: 500;
+}
+
+.flowArrow {
+  flex: 1; text-align: center;
+  color: rgba(74,158,255,0.45);
+  font-size: 18px;
+  animation: arrow-pulse 2s ease-in-out infinite;
+}
+
+/* ── DIAGRAM ── */
+.diagram {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.diagram.visible { opacity: 1; transform: none; }
+
+/* ── COLUMN ── */
+.col {
+  display: flex; flex-direction: column; gap: 12px;
+  position: relative;
+}
+.col:not(:last-child)::after {
+  content: '';
+  position: absolute; right: -8px; top: 44px; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(214,230,242,0.1), transparent);
+}
+
+.colHeader {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  color: var(--accent-blue); letter-spacing: 0.12em;
+  text-transform: uppercase; text-align: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(214,230,242,0.08);
+}
+
+/* ── ITEM ── */
+.item {
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(214,230,242,0.09);
+  border-radius: 10px; padding: 14px;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s;
+  cursor: default;
+  animation: fade-slide-up 0.5s ease both;
+}
+.item:hover {
+  background: rgba(74,158,255,0.08);
+  border-color: rgba(74,158,255,0.3);
+  transform: scale(1.04);
+}
+
+.itemIcon { font-size: 20px; }
+.itemName {
+  font-size: 12px; font-weight: 600;
+  color: var(--white);
+}
+.itemDesc {
+  font-family: var(--font-mono); font-size: 9px;
+  color: rgba(214,230,242,0.38); letter-spacing: 0.06em;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .section { padding: 80px 24px; }
+  .diagram { grid-template-columns: repeat(2, 1fr); }
+  .flowRow { display: none; }
+  .col::after { display: none; }
+}

@@ -1,0 +1,20 @@
+.footer {
+  background: var(--bg-darker);
+  padding: 22px 60px;
+  border-top: 1px solid rgba(214,230,242,0.07);
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 16px;
+}
+
+.left,
+.right {
+  font-family: var(--font-mono); font-size: 11px;
+  color: rgba(214,230,242,0.28); letter-spacing: 0.06em;
+}
+
+@media (max-width: 640px) {
+  .footer {
+    flex-direction: column; text-align: center;
+    padding: 20px 24px;
+  }
+}

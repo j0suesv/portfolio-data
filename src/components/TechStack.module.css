@@ -1,0 +1,107 @@
+.section {
+  background: var(--bg);
+  padding: 110px 60px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.tag {
+  display: inline-block;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+  color: var(--primary); letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: rgba(22,29,111,0.07);
+  border: 1px solid var(--border);
+  border-radius: 4px; padding: 5px 12px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: clamp(26px, 2.8vw, 40px);
+  font-weight: 800; letter-spacing: -0.02em;
+  color: var(--text); margin-bottom: 12px;
+}
+
+.sub {
+  font-size: 15px; color: var(--text-muted);
+  font-weight: 300; max-width: 520px;
+  line-height: 1.75; margin-bottom: 8px;
+}
+
+/* ── CATEGORY ── */
+.category {
+  margin-top: 40px;
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.category.visible { opacity: 1; transform: none; }
+
+.catLabel {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  color: var(--text-muted); letter-spacing: 0.14em;
+  text-transform: uppercase; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.catLabel::after {
+  content: ''; flex: 1;
+  height: 1px; background: var(--border);
+}
+
+.grid {
+  display: flex; flex-wrap: wrap; gap: 12px;
+}
+
+/* ── CHIP ── */
+.chip {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 8px; padding: 18px 20px;
+  min-width: 100px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: default;
+  position: relative; overflow: hidden;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.chip::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(22,29,111,0.09), transparent 70%);
+  opacity: 0; transition: opacity 0.3s;
+}
+.chip:hover {
+  border-color: var(--primary);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(22,29,111,0.12);
+}
+.chip:hover::before { opacity: 1; }
+
+.chipIcon {
+  font-size: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+}
+.chipIcon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.chipIcon58 {
+  min-height: 58px;
+}
+.chipIcon58 img {
+  width: 58px;
+  height: 58px;
+}
+.chipName {
+  font-size: 11px; font-weight: 600;
+  color: var(--text); text-align: center;
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 900px) {
+  .section { padding: 80px 24px; }
+}
