@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { scrollToSection } from '../utils/scrollTo'
 import styles from './Navbar.module.css'
 
 const links = ['About', 'Stack', 'Projects', 'Experience']
@@ -13,6 +14,12 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  function handleNav(e, id) {
+    e.preventDefault()
+    setMenuOpen(false)
+    scrollToSection(id)
+  }
+
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
       <span className={styles.logo}>JS / DATA_ENGINEER</span>
@@ -20,13 +27,13 @@ export default function Navbar() {
       <ul className={`${styles.links} ${menuOpen ? styles.open : ''}`}>
         {links.map(l => (
           <li key={l}>
-            <a href={`#${l.toLowerCase()}`} onClick={() => setMenuOpen(false)}>
+            <a href={`#${l.toLowerCase()}`} onClick={e => handleNav(e, l.toLowerCase())}>
               {l}
             </a>
           </li>
         ))}
         <li>
-          <a href="#contact" className={styles.cta} onClick={() => setMenuOpen(false)}>
+          <a href="#contact" className={styles.cta} onClick={e => handleNav(e, 'contact')}>
             Contact
           </a>
         </li>
