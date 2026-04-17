@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { projects } from '../data/portfolio'
 import { useReveal } from '../hooks/useReveal'
 import styles from './Projects.module.css'
@@ -34,9 +35,9 @@ function ProjectCard({ icon, status, title, description, architecture, tags, git
         <a href={github} className={`${styles.btn} ${styles.btnGhost}`}>
           GitHub ↗
         </a>
-        <a href={caseStudy} className={`${styles.btn} ${styles.btnSolid}`}>
+        <Link to={caseStudy} className={`${styles.btn} ${styles.btnSolid}`}>
           Case Study →
-        </a>
+        </Link>
       </div>
     </article>
   )

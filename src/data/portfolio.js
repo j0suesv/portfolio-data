@@ -88,7 +88,7 @@ export const projects = [
     architecture: 'API → Airflow DAG → Transform → Snowflake',
     tags: ['Python', 'Airflow', 'Snowflake', 'Docker'],
     github: '#',
-    caseStudy: '#',
+    caseStudy: '/case-study/data-pipeline-api-snowflake',
   },
   {
     icon: '📡',
@@ -99,7 +99,7 @@ export const projects = [
     architecture: 'Raw Data → SQL → Python → Power BI',
     tags: ['Python', 'SQL', 'Power BI'],
     github: '#',
-    caseStudy: '#',
+    caseStudy: '/case-study/telecom-data-usage-analytics',
   },
   {
     icon: '🛡️',
@@ -110,7 +110,7 @@ export const projects = [
     architecture: 'Live Data → Anomaly Detection → Alerts',
     tags: ['Python', 'SQL', 'Alerting'],
     github: '#',
-    caseStudy: '#',
+    caseStudy: '/case-study/fraud-detection-monitoring',
   },
   {
     icon: '⚙️',
@@ -121,7 +121,7 @@ export const projects = [
     architecture: 'Sources → Framework DAGs → Cloud → BI',
     tags: ['Python', 'Airflow', 'Cloud'],
     github: '#',
-    caseStudy: '#',
+    caseStudy: '/case-study/etl-automation-framework',
   },
 ]
 

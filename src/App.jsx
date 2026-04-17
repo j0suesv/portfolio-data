@@ -1,3 +1,4 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar      from './components/Navbar'
 import Hero        from './components/Hero'
 import About       from './components/About'
@@ -7,8 +8,9 @@ import Architecture from './components/Architecture'
 import Experience  from './components/Experience'
 import Contact     from './components/Contact'
 import Footer      from './components/Footer'
+import CaseStudy   from './pages/CaseStudy'
 
-export default function App() {
+function Home() {
   return (
     <>
       <Navbar />
@@ -23,5 +25,16 @@ export default function App() {
       </main>
       <Footer />
     </>
+  )
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/case-study/:slug" element={<CaseStudy />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
