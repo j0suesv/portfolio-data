@@ -130,37 +130,37 @@ export const architecture = [
   {
     header: 'Data Sources',
     items: [
-      { icon: '🔌', name: 'REST APIs',  desc: 'JSON · GraphQL'   },
-      { icon: '🗄️', name: 'Databases', desc: 'SQL · NoSQL'       },
-      { icon: '📁', name: 'Files',      desc: 'CSV · Parquet'     },
-      { icon: '📡', name: 'Streams', desc: 'Kafka · Events' },
+      { name: 'REST APIs',  desc: 'JSON · GraphQL'   },
+      { name: 'Databases',  desc: 'SQL · NoSQL'       },
+      { name: 'Files',      desc: 'CSV · Parquet'     },
+      { name: 'Streams',    desc: 'Kafka · Events'    },
     ],
   },
   {
     header: 'ETL Pipelines',
     items: [
-      { icon: '🌀', name: 'Airflow', desc: 'Orchestration' },
-      { icon: '🐍', name: 'Python', desc: 'Transform · Validate' },
-      { icon: '🔥', name: 'Spark', desc: 'Large-scale Processing' },
-      { icon: '🐳', name: 'Docker', desc: 'Containerization' },
+      { name: 'Airflow', desc: 'Orchestration'        },
+      { name: 'Python',  desc: 'Transform · Validate' },
+      { name: 'Spark',   desc: 'Large-scale Processing' },
+      { name: 'Docker',  desc: 'Containerization'     },
     ],
   },
   {
     header: 'Data Warehouse',
     items: [
-      { icon: '❄️', name: 'Snowflake', desc: 'Cloud DWH' },
-      { icon: '☁️', name: 'Azure', desc: 'Data Lake · Synapse' },
-      { icon: '🌩️', name: 'AWS S3', desc: 'Object Storage' },
-      { icon: '🗃️', name: 'SQL', desc: 'Analytics Layer' },
+      { name: 'Snowflake', desc: 'Cloud DWH'          },
+      { name: 'Azure',     desc: 'Data Lake · Synapse' },
+      { name: 'AWS S3',    desc: 'Object Storage'      },
+      { name: 'SQL',       desc: 'Analytics Layer'     },
     ],
   },
   {
     header: 'BI & Analytics',
     items: [
-      { icon: '📊', name: 'Power BI',  desc: 'Dashboards'    },
-      { icon: '🔭', name: 'Looker',    desc: 'Exploration'   },
-      { icon: '🛡️', name: 'Monitoring',desc: 'Alerts · Anomalies' },
-      { icon: '📈', name: 'Reports',   desc: 'Business Insights' },
+      { name: 'Power BI',   desc: 'Dashboards'        },
+      { name: 'Looker',     desc: 'Exploration'        },
+      { name: 'Monitoring', desc: 'Alerts · Anomalies' },
+      { name: 'Reports',    desc: 'Business Insights'  },
     ],
   },
 ]

@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { architecture } from '../data/portfolio'
 import { useReveal } from '../hooks/useReveal'
 import styles from './Architecture.module.css'
@@ -14,20 +15,21 @@ export default function Architecture() {
           The modern data stack I design and operate — from raw sources to actionable dashboards.
         </p>
 
-        {/* flow arrows between columns */}
-        <div className={styles.flowRow}>
+        <div className={styles.pipeline}>
           {architecture.map((col, i) => (
-            <div key={col.header} className={styles.flowStep}>
-              <span className={styles.flowLabel}>{col.header}</span>
+            <Fragment key={col.header}>
+              <div className={styles.stage}>
+                <span className={styles.stageLabel}>{col.header}</span>
+              </div>
               {i < architecture.length - 1 && (
                 <span
-                  className={styles.flowArrow}
-                  style={{ animationDelay: `${i * 0.25}s` }}
+                  className={styles.stageArrow}
+                  style={{ animationDelay: `${i * 0.3}s` }}
                 >
                   →
                 </span>
               )}
-            </div>
+            </Fragment>
           ))}
         </div>
 
@@ -37,14 +39,12 @@ export default function Architecture() {
         >
           {architecture.map((col, ci) => (
             <div key={col.header} className={styles.col}>
-              <div className={styles.colHeader}>{col.header}</div>
               {col.items.map((item, ii) => (
                 <div
                   key={item.name}
                   className={styles.item}
                   style={{ animationDelay: `${ci * 0.08 + ii * 0.06}s` }}
                 >
-                  <span className={styles.itemIcon}>{item.icon}</span>
                   <span className={styles.itemName}>{item.name}</span>
                   <span className={styles.itemDesc}>{item.desc}</span>
                 </div>
