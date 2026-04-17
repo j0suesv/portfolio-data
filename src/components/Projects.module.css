@@ -171,6 +171,14 @@
   box-shadow: 0 4px 14px rgba(22,29,111,0.3);
 }
 
+.btnPrivate {
+  border: 1px dashed rgba(22, 29, 111, 0.2);
+  color: var(--text-muted);
+  cursor: default;
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+
 @media (max-width: 900px) {
   .section { padding: 80px 24px; }
   .grid { grid-template-columns: 1fr; }

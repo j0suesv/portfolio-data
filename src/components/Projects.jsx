@@ -15,7 +15,6 @@ function ProjectCard({ icon, status, title, description, architecture, tags, git
       <div className={styles.topBar} />
 
       <div className={styles.cardHeader}>
-        <span className={styles.cardIcon}>{icon}</span>
         <span className={styles.status}>{status}</span>
       </div>
 
@@ -32,9 +31,15 @@ function ProjectCard({ icon, status, title, description, architecture, tags, git
       </div>
 
       <div className={styles.links}>
-        <a href={github} className={`${styles.btn} ${styles.btnGhost}`}>
-          GitHub ↗
-        </a>
+        {github && github !== '#' ? (
+          <a href={github} target="_blank" rel="noreferrer" className={`${styles.btn} ${styles.btnGhost}`}>
+            GitHub ↗
+          </a>
+        ) : (
+          <span className={`${styles.btn} ${styles.btnPrivate}`}>
+            Private repo
+          </span>
+        )}
         <Link to={caseStudy} className={`${styles.btn} ${styles.btnSolid}`}>
           Case Study →
         </Link>
