@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { projects } from '../data/portfolio'
 import { useReveal } from '../hooks/useReveal'
 import styles from './Projects.module.css'
@@ -14,7 +15,6 @@ function ProjectCard({ icon, status, title, description, architecture, tags, git
       <div className={styles.topBar} />
 
       <div className={styles.cardHeader}>
-        <span className={styles.cardIcon}>{icon}</span>
         <span className={styles.status}>{status}</span>
       </div>
 
@@ -31,12 +31,18 @@ function ProjectCard({ icon, status, title, description, architecture, tags, git
       </div>
 
       <div className={styles.links}>
-        <a href={github} className={`${styles.btn} ${styles.btnGhost}`}>
-          GitHub ↗
-        </a>
-        <a href={caseStudy} className={`${styles.btn} ${styles.btnSolid}`}>
+        {github && github !== '#' ? (
+          <a href={github} target="_blank" rel="noreferrer" className={`${styles.btn} ${styles.btnGhost}`}>
+            GitHub ↗
+          </a>
+        ) : (
+          <span className={`${styles.btn} ${styles.btnPrivate}`}>
+            Private repo
+          </span>
+        )}
+        <Link to={caseStudy} className={`${styles.btn} ${styles.btnSolid}`}>
           Case Study →
-        </a>
+        </Link>
       </div>
     </article>
   )

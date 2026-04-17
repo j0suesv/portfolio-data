@@ -315,6 +315,6 @@
     padding: 120px 24px 60px;
     gap: 56px;
   }
-  .right { order: -1; }
+  .right { order: -1; justify-content: flex-start; }
   .portraitWrap { max-width: min(300px, 78vw); }
 }

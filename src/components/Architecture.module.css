@@ -31,27 +31,70 @@
   line-height: 1.75; margin-bottom: 48px;
 }
 
-/* ── FLOW ROW ── */
-.flowRow {
-  display: flex; align-items: center; gap: 0;
-  margin-bottom: 32px;
+/* ── PIPELINE HEADER ── */
+/*
+  Alignment math:
+    diagram: grid-template-columns repeat(4, 1fr), gap 16px
+    → each col = (W - 3×16px) / 4
+
+    pipeline: flex row, each .stage flex:1, each .stageArrow width:16px
+    → each stage = (W - 3×16px) / 4  ✓ perfect match
+*/
+.pipeline {
+  display: flex;
+  align-items: center;
+  margin-bottom: 28px;
+  position: relative;
 }
 
-.flowStep {
-  display: flex; align-items: center; gap: 0;
+/* subtle connecting line behind the labels */
+.pipeline::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(74,158,255,0.18) 6%,
+    rgba(74,158,255,0.18) 94%,
+    transparent 100%
+  );
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.stage {
   flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
-.flowLabel {
-  font-family: var(--font-mono); font-size: 10px;
-  color: var(--accent-blue); letter-spacing: 0.1em;
-  text-transform: uppercase; font-weight: 500;
+.stageLabel {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  color: var(--accent-blue); letter-spacing: 0.13em;
+  text-transform: uppercase;
+  background: var(--bg-darker);
+  border: 1px solid rgba(74,158,255,0.22);
+  border-radius: 5px;
+  padding: 5px 12px;
+  white-space: nowrap;
+  transition: border-color 0.25s, color 0.25s;
 }
 
-.flowArrow {
-  flex: 1; text-align: center;
-  color: rgba(74,158,255,0.45);
-  font-size: 18px;
+.stageArrow {
+  width: 16px;
+  flex-shrink: 0;
+  text-align: center;
+  color: rgba(74,158,255,0.5);
+  font-size: 15px;
+  position: relative;
+  z-index: 1;
   animation: arrow-pulse 2s ease-in-out infinite;
 }
 
@@ -72,50 +115,48 @@
 }
 .col:not(:last-child)::after {
   content: '';
-  position: absolute; right: -8px; top: 44px; bottom: 0;
+  position: absolute; right: -8px; top: 0; bottom: 0;
   width: 1px;
-  background: linear-gradient(to bottom, transparent, rgba(214,230,242,0.1), transparent);
-}
-
-.colHeader {
-  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
-  color: var(--accent-blue); letter-spacing: 0.12em;
-  text-transform: uppercase; text-align: center;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(214,230,242,0.08);
+  background: linear-gradient(to bottom, transparent, rgba(214,230,242,0.08), transparent);
 }
 
 /* ── ITEM ── */
 .item {
   background: rgba(255,255,255,0.035);
   border: 1px solid rgba(214,230,242,0.09);
-  border-radius: 10px; padding: 14px;
+  border-radius: 10px; padding: 18px 16px;
   text-align: center;
-  display: flex; flex-direction: column; align-items: center; gap: 4px;
-  transition: background 0.25s, border-color 0.25s, transform 0.25s;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+  min-height: 72px;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s;
   cursor: default;
   animation: fade-slide-up 0.5s ease both;
 }
 .item:hover {
-  background: rgba(74,158,255,0.08);
-  border-color: rgba(74,158,255,0.3);
-  transform: scale(1.04);
+  background: rgba(74,158,255,0.07);
+  border-color: rgba(74,158,255,0.28);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(74,158,255,0.08);
 }
 
-.itemIcon { font-size: 20px; }
 .itemName {
-  font-size: 12px; font-weight: 600;
-  color: var(--white);
+  font-size: 14px; font-weight: 700;
+  color: var(--white); letter-spacing: 0.01em;
 }
 .itemDesc {
-  font-family: var(--font-mono); font-size: 9px;
-  color: rgba(214,230,242,0.38); letter-spacing: 0.06em;
+  font-family: var(--font-mono); font-size: 10px;
+  color: rgba(214,230,242,0.4); letter-spacing: 0.06em;
 }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .section { padding: 80px 24px; }
   .diagram { grid-template-columns: repeat(2, 1fr); }
-  .flowRow { display: none; }
+  .pipeline { display: none; }
   .col::after { display: none; }
+}
+
+@media (max-width: 480px) {
+  .section { padding: 64px 20px; }
+  .diagram { grid-template-columns: 1fr; gap: 10px; }
 }
