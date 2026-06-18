@@ -1,6 +1,6 @@
 .section {
   background: var(--bg-card);
-  padding: 110px 60px;
+  padding: 80px 60px;
 }
 
 .inner {
@@ -31,11 +31,80 @@
   line-height: 1.75; margin-bottom: 48px;
 }
 
+/* ── CAROUSEL ── */
+.carousel {
+  margin-bottom: 32px;
+}
+
 /* ── GRID ── */
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
+}
+
+/* ── CAROUSEL NAV ── */
+.carouselNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+/* ── NAV BUTTONS ── */
+.navBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.navBtn:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(22, 29, 111, 0.05);
+  transform: scale(1.05);
+}
+
+.navBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ── PAGINATION DOTS ── */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.dot:hover {
+  background: rgba(22, 29, 111, 0.2);
+}
+
+.dot.active {
+  background: var(--primary);
+  border-color: var(--primary);
 }
 
 /* ── CARD ── */
@@ -44,7 +113,8 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 32px;
-  position: relative; overflow: hidden;
+  position: relative;
+  overflow: hidden;
   transition:
     border-color 0.3s,
     transform 0.3s,
@@ -182,4 +252,9 @@
 @media (max-width: 900px) {
   .section { padding: 80px 24px; }
   .grid { grid-template-columns: 1fr; }
+  .carouselNav { flex-direction: column; gap: 16px; }
+}
+
+@media (max-width: 600px) {
+  .section { padding: 60px 16px; }
 }

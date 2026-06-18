@@ -123,6 +123,28 @@ export const projects = [
     github: '#',
     caseStudy: '/case-study/etl-automation-framework',
   },
+  {
+    icon: '📥',
+    status: 'PIPELINE',
+    title: 'Client Onboarding Data Pipeline',
+    description:
+      'Scalable data ingestion and onboarding pipeline that automates the process of integrating new clients into a data product. Built with Python and orchestrated using Prefect and Airflow on AWS and Snowflake infrastructure.',
+    architecture: 'Client Metadata → Data Connection → dbt Transform → Snowflake',
+    tags: ['Python', 'Snowflake', 'AWS', 'Prefect', 'dbt'],
+    github: '#',
+    caseStudy: '/case-study/loopstudio-client-onboarding-pipeline',
+  },
+  {
+    icon: '🎪',
+    status: 'AUTOMATION',
+    title: 'Event Venue Pricing Benchmarking',
+    description:
+      'Automated web scraping pipeline that collects competitive pricing data from event venues for a coworking company. Built with Python and Airflow to provide continuous market intelligence and enable data-driven pricing strategy.',
+    architecture: 'Event Websites → Web Scraper → Database → Dashboards',
+    tags: ['Python', 'Airflow', 'Web Scraping', 'Data Analysis'],
+    github: '#',
+    caseStudy: '/case-study/coworking-event-pricing-benchmarking',
+  },
 ]
 
 // ── ARCHITECTURE ──────────────────────────────────────
