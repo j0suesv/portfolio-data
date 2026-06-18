@@ -170,12 +170,12 @@ export const experience = [
   {
     icon: '📊',
     company: 'Loopstudio',
-    role: 'Data Analyst',
+    role: 'Data Analyst / Data Engineer',
     period: 'Apr 2025 – Present',
     current: true,
     description:
-      'Working as part of the Ingest team for a data-focused product, ensuring that the information used across the platform is accurate, reliable and valuable for the company. Responsibilities include leading the integration of new clients into the platform, building and maintaining analytical reports, automating manual data processes and supporting data-driven decision making. Optimized the new customer onboarding process by 40%, reduced report delivery times and built pipelines that allow immediate data mapping.',
-    stack: ['Python', 'SQL', 'Data Ingestion', 'ETL Pipelines', 'Data Quality', 'Automation'],
+      'I work for a client with a product fully focused on data, as part of the Ingest team, where we ensure that the information used is accurate, reliable, and valuable for the company. On a daily basis I build, deploy, and maintain production data infrastructure, guaranteeing the quality and consistency of ingested data, which directly impacts client satisfaction, retention, and company revenue. Build and maintain scalable Python data pipelines on Snowflake and AWS, orchestrate production data workflows with Prefect and Airflow, and develop dbt models with ETL/ELT workflows integrating multiple data sources.',
+    stack: ['Python', 'SQL', 'Snowflake', 'AWS', 'dbt', 'Prefect', 'Airflow', 'Jenkins', 'Docker'],
   },
   {
     icon: '📡',
@@ -184,18 +184,18 @@ export const experience = [
     period: 'Apr 2024 – May 2025',
     current: false,
     description:
-      'Worked in the Business Assurance and Fraud Management department for a major telecommunications client in the United States. Used Python, SQL, Power BI and Excel to analyze large datasets, identify patterns affecting business processes, improve ETL workflows and build monitoring systems that detect unusual events in telecom operations.',
-    stack: ['Python', 'SQL', 'Power BI', 'ETL', 'Business Assurance', 'Fraud Monitoring'],
+      'Applied data analytics in the Business Assurance and Fraud Management department for a major US telecommunications client (Verizon), working under Scrum agile methodology. Used Python, SQL, Power BI, and Excel to identify patterns that impacted business processes and improved ETL workflows. Replaced manual reporting processes with automated solutions, reducing manual effort and improving consistency. Contributed to monitoring systems to ensure processes ran normally and to trigger alerts on unusual events.',
+    stack: ['Python', 'SQL', 'Power BI', 'ETL', 'Business Assurance', 'Fraud Monitoring', 'Excel'],
   },
   {
-    icon: '💻',
-    company: 'Macondo Tech',
-    role: 'Frontend Development Intern',
-    period: 'Feb 2024 – May 2024',
+    icon: '⚙️',
+    company: 'Freelance Data Engineer (Independent)',
+    role: 'Data Engineer',
+    period: 'Aug 2023 – Feb 2024',
     current: false,
     description:
-      'Worked on frontend development for a responsive web application using modern web technologies. Contributed to building interactive interfaces using HTML, CSS, JavaScript and React while gaining experience in collaborative software development.',
-    stack: ['HTML', 'CSS', 'JavaScript', 'React', 'Frontend Development'],
+      'Delivered data engineering projects for small businesses across different industries, building pipelines, integrations, and dashboards tailored to each client\'s decision-making needs. Built and scheduled Python web scraping pipelines orchestrated with Airflow for a coworking company to benchmark event-venue pricing. Designed SQL-based dashboards for a school to make all data accessible in one place. Built and maintained ETL pipelines integrating 4 data sources to process transaction and customer-preference data for an e-commerce business.',
+    stack: ['Python', 'SQL', 'Airflow', 'Web Scraping', 'ETL', 'Git', 'Dashboards'],
   },
 ]
 
