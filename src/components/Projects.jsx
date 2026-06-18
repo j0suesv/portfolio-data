@@ -50,7 +50,7 @@ function ProjectCard({ icon, status, title, description, architecture, tags, git
 }
 
 export default function Projects() {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentPage, setCurrentPage] = useState(0)
   const [itemsPerPage, setItemsPerPage] = useState(4)
 
   useEffect(() => {
@@ -66,17 +66,20 @@ export default function Projects() {
     return () => window.removeEventListener('resize', updateItemsPerPage)
   }, [])
 
-  const maxIndex = Math.max(0, projects.length - itemsPerPage)
-  const hasNextPage = currentIndex < maxIndex
-  const hasPrevPage = currentIndex > 0
+  const totalPages = Math.ceil(projects.length / itemsPerPage)
+  const hasNextPage = currentPage < totalPages - 1
+  const hasPrevPage = currentPage > 0
 
   const goNext = () => {
-    setCurrentIndex(Math.min(currentIndex + 1, maxIndex))
+    if (hasNextPage) setCurrentPage(currentPage + 1)
   }
 
   const goPrev = () => {
-    setCurrentIndex(Math.max(currentIndex - 1, 0))
+    if (hasPrevPage) setCurrentPage(currentPage - 1)
   }
+
+  const startIndex = currentPage * itemsPerPage
+  const visibleProjects = projects.slice(startIndex, startIndex + itemsPerPage)
 
   return (
     <section id="projects" className={styles.section}>
@@ -89,13 +92,13 @@ export default function Projects() {
 
         <div className={styles.carousel}>
           <div className={styles.grid}>
-            {projects.slice(currentIndex, currentIndex + itemsPerPage).map((p, i) => (
+            {visibleProjects.map((p, i) => (
               <ProjectCard key={p.title} {...p} delay={(i % 2) * 120} />
             ))}
           </div>
         </div>
 
-        {maxIndex > 0 && (
+        {totalPages > 1 && (
           <>
             <div className={styles.carouselNav}>
               <button
@@ -108,11 +111,11 @@ export default function Projects() {
               </button>
 
               <div className={styles.pagination}>
-                {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+                {Array.from({ length: totalPages }).map((_, i) => (
                   <button
                     key={i}
-                    className={`${styles.dot} ${currentIndex === i * itemsPerPage ? styles.active : ''}`}
-                    onClick={() => setCurrentIndex(i * itemsPerPage)}
+                    className={`${styles.dot} ${currentPage === i ? styles.active : ''}`}
+                    onClick={() => setCurrentPage(i)}
                     aria-label={`Go to project page ${i + 1}`}
                   />
                 ))}
