@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { hero } from '../data/portfolio'
+import { scrollToSection } from '../utils/scrollTo'
 import styles from './Hero.module.css'
 
 const CV_PATH = '/CV.pdf'
@@ -53,7 +54,7 @@ export default function Hero() {
           </div>
 
           <div className={styles.btns}>
-            <a href="#projects" className={styles.btnPrimary}>View Projects →</a>
+            <a href="#projects" className={styles.btnPrimary} onClick={e => { e.preventDefault(); scrollToSection('projects') }}>View Projects →</a>
             <button
               type="button"
               className={styles.btnOutline}
@@ -61,7 +62,7 @@ export default function Hero() {
             >
               Download Resume ↓
             </button>
-            <a href="#contact" className={styles.btnOutline}>Contact Me</a>
+            <a href="#contact" className={styles.btnOutline} onClick={e => { e.preventDefault(); scrollToSection('contact') }}>Contact Me</a>
           </div>
         </div>
 

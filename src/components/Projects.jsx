@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { projects } from '../data/portfolio'
 import { useReveal } from '../hooks/useReveal'
@@ -49,6 +50,37 @@ function ProjectCard({ icon, status, title, description, architecture, tags, git
 }
 
 export default function Projects() {
+  const [currentPage, setCurrentPage] = useState(0)
+  const [itemsPerPage, setItemsPerPage] = useState(4)
+
+  useEffect(() => {
+    const updateItemsPerPage = () => {
+      const width = window.innerWidth
+      if (width < 600) setItemsPerPage(1)
+      else if (width < 900) setItemsPerPage(2)
+      else setItemsPerPage(4)
+    }
+
+    updateItemsPerPage()
+    window.addEventListener('resize', updateItemsPerPage)
+    return () => window.removeEventListener('resize', updateItemsPerPage)
+  }, [])
+
+  const totalPages = Math.ceil(projects.length / itemsPerPage)
+  const hasNextPage = currentPage < totalPages - 1
+  const hasPrevPage = currentPage > 0
+
+  const goNext = () => {
+    if (hasNextPage) setCurrentPage(currentPage + 1)
+  }
+
+  const goPrev = () => {
+    if (hasPrevPage) setCurrentPage(currentPage - 1)
+  }
+
+  const startIndex = currentPage * itemsPerPage
+  const visibleProjects = projects.slice(startIndex, startIndex + itemsPerPage)
+
   return (
     <section id="projects" className={styles.section}>
       <div className={styles.inner}>
@@ -58,11 +90,48 @@ export default function Projects() {
           End-to-end data engineering projects from ingestion to insight.
         </p>
 
-        <div className={styles.grid}>
-          {projects.map((p, i) => (
-            <ProjectCard key={p.title} {...p} delay={(i % 2) * 120} />
-          ))}
+        <div className={styles.carousel}>
+          <div className={styles.grid}>
+            {visibleProjects.map((p, i) => (
+              <ProjectCard key={p.title} {...p} delay={(i % 2) * 120} />
+            ))}
+          </div>
         </div>
+
+        {totalPages > 1 && (
+          <>
+            <div className={styles.carouselNav}>
+              <button
+                className={`${styles.navBtn} ${styles.navPrev}`}
+                onClick={goPrev}
+                disabled={!hasPrevPage}
+                aria-label="Previous projects"
+              >
+                ←
+              </button>
+
+              <div className={styles.pagination}>
+                {Array.from({ length: totalPages }).map((_, i) => (
+                  <button
+                    key={i}
+                    className={`${styles.dot} ${currentPage === i ? styles.active : ''}`}
+                    onClick={() => setCurrentPage(i)}
+                    aria-label={`Go to project page ${i + 1}`}
+                  />
+                ))}
+              </div>
+
+              <button
+                className={`${styles.navBtn} ${styles.navNext}`}
+                onClick={goNext}
+                disabled={!hasNextPage}
+                aria-label="Next projects"
+              >
+                →
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </section>
   )

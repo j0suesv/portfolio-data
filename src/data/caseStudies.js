@@ -4,33 +4,35 @@
 
 export const caseStudies = [
   {
-    slug: 'data-pipeline-api-snowflake',
-    title: 'Data Pipeline: API → Snowflake',
+    slug: 'loopstudio-client-onboarding-pipeline',
+    title: 'Client Onboarding Data Pipeline',
     status: 'PIPELINE',
-    tags: ['Python', 'Airflow', 'Snowflake', 'Docker'],
+    tags: ['Python', 'Snowflake', 'AWS', 'Prefect', 'dbt'],
     summary:
-      'End-to-end pipeline that extracts data from a REST API, applies transformation logic and loads it into Snowflake. Orchestrated with Airflow and containerized with Docker for consistent, repeatable runs.',
+      'Scalable data ingestion and onboarding pipeline that automates the process of integrating new clients into a data product. Built with Python and orchestrated using Prefect and Airflow on AWS and Snowflake infrastructure.',
     problem:
-      'The team was pulling data manually from a third-party REST API on a daily basis, copying results into spreadsheets and loading them into the warehouse by hand. This introduced delays, human error and made it impossible to scale as the number of endpoints grew.',
+      'The onboarding process for new clients was largely manual and slow. Each new client required custom setup, data source validation, schema mapping and initial transformation — a process that took weeks and required constant engineering involvement. This bottleneck limited how many new clients could be onboarded each quarter.',
     solution:
-      'Built a fully automated pipeline in Python that handles authentication, pagination and rate-limiting against the source API. Transformations are applied in-memory before the data is upserted into Snowflake using the Snowflake Python connector. The entire workflow is orchestrated as an Airflow DAG and deployed in Docker, making it portable and easy to run in any environment.',
+      'Built an automated onboarding pipeline in Python that handles client setup, data source connections, schema discovery, transformation templates and quality validation. The pipeline uses dbt for modular transformations and is orchestrated with Prefect and Airflow, allowing new clients to be provisioned in Snowflake and AWS S3 with minimal manual intervention. Incorporated reusable data models and validation rules that apply across all clients.',
     architecture: {
-      diagram: 'REST API → Airflow DAG → Python Transform → Snowflake',
+      diagram: 'Client Metadata → Data Connection → Schema Discovery → dbt Transform → Quality Checks → Snowflake',
       steps: [
-        { label: 'REST API', desc: 'Authenticated extraction with pagination and retry logic' },
-        { label: 'Airflow DAG', desc: 'Schedules and monitors each pipeline run with alerting on failure' },
-        { label: 'Python Transform', desc: 'Cleans, validates and reshapes the raw JSON payload' },
-        { label: 'Snowflake', desc: 'Upsert into target tables using MERGE statements' },
+        { label: 'Client Metadata', desc: 'Configuration for data source credentials, schema mappings and business rules' },
+        { label: 'Data Connection', desc: 'Automated discovery and validation of client data sources with error handling' },
+        { label: 'Schema Discovery', desc: 'Introspection of source schemas and mapping to standardized warehouse structure' },
+        { label: 'dbt Transform', desc: 'Modular transformations applied consistently across all client datasets' },
+        { label: 'Quality Checks', desc: 'Automated validation of data completeness, consistency and timeliness' },
+        { label: 'Snowflake', desc: 'Client data loaded into isolated schemas with performance-optimized structures' },
       ],
     },
     results: [
-      { metric: '100%', label: 'Manual work eliminated' },
-      { metric: '< 5 min', label: 'Pipeline run time' },
-      { metric: '0', label: 'Data errors since launch' },
+      { metric: '40%', label: 'Reduction in onboarding time' },
+      { metric: 'Immediate', label: 'Data mapping and availability' },
+      { metric: 'Self-serve', label: 'New clients can onboard with minimal support' },
     ],
-    stack: ['Python', 'Apache Airflow', 'Snowflake', 'Docker', 'REST APIs', 'SQL'],
+    stack: ['Python', 'Snowflake', 'AWS S3', 'dbt', 'Prefect', 'Airflow', 'SQL'],
     learnings:
-      'Idempotency matters more than speed. Designing the pipeline to be safely re-runnable from any point saved significant debugging time when upstream API outages caused partial runs.',
+      'Standardization without rigidity is critical. Building a framework that works for 80% of clients took far less time than trying to handle every edge case upfront. The remaining 20% now have a clear path for customization without breaking the core pipeline.',
     github: '#',
   },
   {
@@ -121,6 +123,68 @@ export const caseStudies = [
     stack: ['Python', 'Apache Airflow', 'Cloud (AWS / Azure)', 'Docker', 'SQL'],
     learnings:
       'Flexibility vs. convention is a constant tradeoff. The framework needed to be opinionated enough to enforce consistency but flexible enough that engineers would actually use it rather than work around it.',
+    github: '#',
+  },
+  {
+    slug: 'data-pipeline-api-snowflake',
+    title: 'Data Pipeline: API → Snowflake',
+    status: 'PIPELINE',
+    tags: ['Python', 'Airflow', 'Snowflake', 'Docker'],
+    summary:
+      'End-to-end pipeline that extracts data from a REST API, applies transformation logic and loads it into Snowflake. Orchestrated with Airflow and containerized with Docker for consistent, repeatable runs.',
+    problem:
+      'The team was pulling data manually from a third-party REST API on a daily basis, copying results into spreadsheets and loading them into the warehouse by hand. This introduced delays, human error and made it impossible to scale as the number of endpoints grew.',
+    solution:
+      'Built a fully automated pipeline in Python that handles authentication, pagination and rate-limiting against the source API. Transformations are applied in-memory before the data is upserted into Snowflake using the Snowflake Python connector. The entire workflow is orchestrated as an Airflow DAG and deployed in Docker, making it portable and easy to run in any environment.',
+    architecture: {
+      diagram: 'REST API → Airflow DAG → Python Transform → Snowflake',
+      steps: [
+        { label: 'REST API', desc: 'Authenticated extraction with pagination and retry logic' },
+        { label: 'Airflow DAG', desc: 'Schedules and monitors each pipeline run with alerting on failure' },
+        { label: 'Python Transform', desc: 'Cleans, validates and reshapes the raw JSON payload' },
+        { label: 'Snowflake', desc: 'Upsert into target tables using MERGE statements' },
+      ],
+    },
+    results: [
+      { metric: '100%', label: 'Manual work eliminated' },
+      { metric: '< 5 min', label: 'Pipeline run time' },
+      { metric: '0', label: 'Data errors since launch' },
+    ],
+    stack: ['Python', 'Apache Airflow', 'Snowflake', 'Docker', 'REST APIs', 'SQL'],
+    learnings:
+      'Idempotency matters more than speed. Designing the pipeline to be safely re-runnable from any point saved significant debugging time when upstream API outages caused partial runs.',
+    github: '#',
+  },
+  
+  {
+    slug: 'coworking-event-pricing-benchmarking',
+    title: 'Event Venue Pricing Benchmarking',
+    status: 'AUTOMATION',
+    tags: ['Python', 'Airflow', 'Web Scraping', 'Data Analysis'],
+    summary:
+      'Automated web scraping pipeline that collects competitive pricing data from event venues for a coworking company. Built with Python and Airflow to provide continuous market intelligence and enable data-driven pricing strategy.',
+    problem:
+      'A coworking company lacked visibility into competitor pricing for event spaces. They were setting prices manually based on intuition rather than market data, which meant they were either losing deals due to being overpriced or leaving money on the table by being too cheap. Collecting competitive pricing data manually would have taken hours every week.',
+    solution:
+      'Built a Python web scraping pipeline that automatically collects pricing information from competitor venues and booking platforms. The pipeline runs daily via Airflow, normalizes the scraped data, and stores it in a centralized database. Created dashboards that show pricing trends, market positioning and anomalies, giving the company data-driven insights for their pricing decisions.',
+    architecture: {
+      diagram: 'Event Venue Websites → Web Scraper → Data Normalization → Database → Analysis Dashboards',
+      steps: [
+        { label: 'Event Venue Websites', desc: 'Multiple competitor and marketplace websites providing venue pricing' },
+        { label: 'Web Scraper', desc: 'Python-based scraper with error handling, retry logic and rate limiting' },
+        { label: 'Data Normalization', desc: 'Standardizes pricing across different venues and event sizes' },
+        { label: 'Database', desc: 'Historical storage of pricing data for trend analysis' },
+        { label: 'Analysis Dashboards', desc: 'Market positioning, pricing gaps and competitive intelligence' },
+      ],
+    },
+    results: [
+      { metric: '100%', label: 'Automated data collection' },
+      { metric: 'Daily', label: 'Fresh competitive pricing data' },
+      { metric: 'Actionable', label: 'Market insights for pricing strategy' },
+    ],
+    stack: ['Python', 'Apache Airflow', 'Web Scraping', 'SQL', 'Git'],
+    learnings:
+      'Web scraping fragility requires resilience patterns. Websites change their structure frequently, so building the scraper with CSS selector fallbacks and explicit error notifications meant the team caught issues quickly instead of running stale data for weeks.',
     github: '#',
   },
 ]

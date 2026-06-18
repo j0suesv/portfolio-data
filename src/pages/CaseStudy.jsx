@@ -1,14 +1,20 @@
 import { useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { caseStudies } from '../data/caseStudies'
 import styles from './CaseStudy.module.css'
 
 export default function CaseStudy() {
   const { slug } = useParams()
+  const navigate = useNavigate()
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [slug])
+
+  function goBack(e) {
+    e.preventDefault()
+    navigate('/', { state: { scrollTo: 'projects' } })
+  }
   const index = caseStudies.findIndex(c => c.slug === slug)
   const study = caseStudies[index]
 
@@ -17,7 +23,7 @@ export default function CaseStudy() {
       <div className={styles.notFound}>
         <span className={styles.notFoundCode}>404</span>
         <p>Case study not found.</p>
-        <Link to="/#projects" className={styles.backLink}>← Back to projects</Link>
+        <a href="/" onClick={goBack} className={styles.backLink}>← Back to projects</a>
       </div>
     )
   }
@@ -30,7 +36,7 @@ export default function CaseStudy() {
 
       {/* ── TOP NAV ── */}
       <nav className={styles.topNav}>
-        <Link to="/#projects" className={styles.backLink}>← Back to projects</Link>
+        <a href="/" onClick={goBack} className={styles.backLink}>← Back to projects</a>
       </nav>
 
       {/* ── HEADER ── */}
